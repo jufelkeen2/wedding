@@ -1,0 +1,428 @@
+@font-face {
+  font-family: "Hpotter";
+  src: url("fonts/hpotter.TTF") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Estilo general */
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: "Hpotter", sans-serif;
+  background-color: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Video de fondo */
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -2;
+}
+
+/* Contenedor en forma de cuadrado con puntas redondeadas, centrado y animado */
+.triangle-container {
+  position: relative;
+  width: 1000px;
+  height: 1000px;
+  background-color: rgba(26, 26, 26, 0.75);
+  text-align: center;
+  color: white;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  border: 3px solid #d4af37;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  border-radius: 20px; /* Redondeado de las esquinas */
+  transition: background-color 1s ease;
+}
+
+/* Imagen de fondo de las Reliquias */
+.reliquias-bg {
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  opacity: 0.5; /* Muy opaca */
+  z-index: -1;
+}
+
+/* Título y texto dentro del triángulo */
+.main-title {
+  font-size: 3em;
+  color: white;
+}
+
+.intro-text {
+  font-size: 1.4em;
+  margin-bottom: 90px;
+}
+.roulette-container {
+  font-size: 2.4em;
+  margin-bottom: 90px;
+}
+
+#spin-roulette {
+  margin-top: 10px;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+#spin-roulette img {
+  width: 400px; /* Ajusta el tamaño según prefieras */
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+#spin-roulette img:hover {
+  transform: scale(1.1);
+}
+
+#house-result {
+  margin-top: 80px;
+  font-size: 1.7em;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Posicionar correctamente el texto final y el enlace */
+.footer-text {
+  margin-top: 20px;
+  position: absolute;
+  bottom: 50px;
+  text-align: center;
+  width: 100%;
+  color: #d4af37;
+  font-size: 2em;
+}
+
+.bottom-text {
+  position: absolute;
+  bottom: 150px;
+  text-align: center;
+  width: 100%;
+  color: white;
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+.footer-text a {
+  color: #d4af37;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.footer-text a:hover {
+  text-decoration: underline;
+  color: #b2951c;
+}
+
+/* Efecto de cambio de color por casa con opacidad */
+.gryffindor {
+  background-color: rgba(127, 9, 9, 0.75);
+  color: #d4af37;
+}
+
+.slytherin {
+  background-color: rgba(26, 71, 42, 0.75);
+  color: #c0c0c0;
+}
+
+.ravenclaw {
+  background-color: rgba(14, 26, 64, 0.75);
+  color: #946b2d;
+}
+
+.hufflepuff {
+  background-color: rgba(170, 139, 0, 0.836);
+  color: #000000;
+}
+
+/* Corrección de contraste para Hufflepuff */
+.hufflepuff .main-title,
+.hufflepuff .intro-text,
+.hufflepuff .footer-text,
+.hufflepuff #spin-roulette,
+.hufflepuff .bottom-text {
+  color: #ffffff !important;
+}
+
+/* 🎇 Partículas mágicas mejoradas */
+.particle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  opacity: 0.9;
+  animation: float 5s linear forwards, glow 1s alternate infinite;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+@keyframes float {
+  to {
+    transform: translateY(-250px);
+    opacity: 0;
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 1);
+  }
+}
+
+/* ✨ Animación del Mapa del Merodeador */
+@keyframes mapGlow {
+  0% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.5) drop-shadow(0 0 10px #ffd700);
+  }
+  100% {
+    filter: brightness(1);
+  }
+}
+
+.map-reveal {
+  animation: mapGlow 2s ease-in-out infinite alternate;
+}
+
+/* 🎩 Animación del Sombrero Seleccionador */
+@keyframes hatSpin {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  25% {
+    transform: rotate(90deg) scale(0.8);
+  }
+  50% {
+    transform: rotate(180deg) scale(1);
+  }
+  75% {
+    transform: rotate(270deg) scale(0.8);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+/* 🎯 Estilo del botón de Regresar */
+.return-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #d4af37;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.2em;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.3s ease;
+}
+
+.return-button:hover {
+  background-color: #b2951c;
+}
+
+/* 📱 RESPONSIVE DESIGN */
+
+/* Para pantallas pequeñas (teléfonos) */
+@media only screen and (max-width: 425px) {
+  .triangle-container {
+    width: 80%;
+    min-height: 20vh;
+    padding: 10px 10px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  #spin-roulette img {
+    width: 300px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .roulette-container {
+    font-size: 2.5em;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+
+  #house-result h1 {
+    font-size: 1em !important;
+    margin-top: 10px;
+    line-height: 2.2em;
+  }
+
+  .bottom-text {
+    font-size: 1.8em;
+    margin-top: 20px;
+    line-height: 1.4em;
+  }
+
+  .footer-text {
+    font-size: 1.7em;
+    bottom: 30px;
+  }
+
+  .reliquias-bg {
+    position: absolute;
+    bottom: 30%;
+    left: 5%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 50%;
+    opacity: 0.03;
+    z-index: -1;
+  }
+
+  .return-button {
+    font-size: 1.5em;
+    padding: 10px 18px;
+    top: 10px;
+    right: 10px;
+  }
+}
+
+.house-shield {
+  width: 300px !important;
+  height: auto !important;
+  position: absolute;
+  bottom: 35%;
+  left: 7%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 50%;
+}
+
+/* Para tablets (pantallas medianas) */
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  .triangle-container {
+    width: 90%;
+    min-height: 90vh;
+    padding: 30px;
+    border-radius: 18px;
+  }
+
+  #spin-roulette img {
+    width: 400px;
+  }
+
+  .roulette-container {
+    font-size: 1.8em;
+    margin-bottom: 25px;
+  }
+
+  #house-result h1 {
+    font-size: 2.1em !important;
+  }
+
+  .bottom-text {
+    font-size: 1.8em;
+    line-height: 1.4em;
+    margin-top: 25px;
+  }
+
+  .footer-text {
+    font-size: 1.8em;
+  }
+
+  .reliquias-bg {
+    opacity: 0.04;
+    width: 85%;
+    height: 60%;
+  }
+
+  .return-button {
+    font-size: 1.2em;
+    padding: 12px 24px;
+  }
+}
+
+.house-shield {
+  width: 600px !important;
+  height: auto !important;
+  position: absolute;
+  bottom: 15%;
+  left: 10%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 50%;
+}
+
+/* Para pantallas grandes (computadora) */
+@media only screen and (min-width: 1025px) {
+  .triangle-container {
+    width: 1000px;
+    height: 1000px;
+  }
+
+  #spin-roulette img {
+    width: 460px;
+  }
+
+  .roulette-container {
+    font-size: 2.4em;
+    margin-bottom: 40px;
+  }
+
+  #house-result h1 {
+    font-size: 2.5em !important;
+  }
+
+  .bottom-text {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    line-height: 1.3em;
+  }
+
+  .footer-text {
+    font-size: 2em;
+  }
+
+  .reliquias-bg {
+    opacity: 0.05;
+    width: 70%;
+    height: 70%;
+  }
+
+  .return-button {
+    font-size: 1.2em;
+    padding: 12px 24px;
+  }
+}
+
+.house-shield {
+  width: 800px !important;
+  height: auto !important;
+  position: absolute;
+  bottom: 8%;
+  left: 13%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 50%;
+}
