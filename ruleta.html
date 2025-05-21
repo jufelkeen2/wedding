@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Invitación Mágica - Giorgana y Julián</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <script src="./scripts.js" defer></script>
+  </head>
+  <body>
+    <div class="map-scroll">
+      <video autoplay loop muted class="background-video">
+        <source src="./img/map.mp4" type="video/mp4" />
+        Tu navegador no soporta este video.
+      </video>
+    </div>
+
+    <div
+      class="invitation-container triangle-container animate__animated animate__fadeInDown"
+    >
+      <img
+        src="./img/escudo.png"
+        alt="Reliquias de la Muerte"
+        class="reliquias-bg animate__animated animate__backInUp animate__delay-2s"
+      />
+
+      <div class="roulette-container">
+        <h2>Selecciona tu Casa de Hogwarts:</h2>
+        <button id="spin-roulette">
+          <img
+            src="./img/hat.png"
+            alt="Sombrero Seleccionador"
+            class="animate__animated animate__fadeIn animate__delay-4s"
+          />
+        </button>
+        <div id="house-result" class="hidden">
+          <p>¡Felicidades! Eres parte de <span id="house-name"></span></p>
+        </div>
+      </div>
+
+      <div class="bottom-text">
+        ¡Estás Invitado a un Evento Mágico! <br />
+        GIORGANA y JULIAN te invitan a celebrar un enlace Eterno entre mago y
+        bruja.
+      </div>
+
+      <p class="footer-text">
+        Confirma tu asistencia con un hechizo en el siguiente enlace:
+        <a href="#">Confirma tu Asistencia</a>
+      </p>
+    </div>
+  </body>
+</html>
