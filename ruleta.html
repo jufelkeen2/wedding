@@ -53,5 +53,26 @@
         <a href="#">Confirma tu Asistencia</a>
       </p>
     </div>
+    <div id="fade-in-overlay"></div>
+    <script>
+      const fadeIn = document.createElement("div");
+      fadeIn.style.position = "fixed";
+      fadeIn.style.top = "0";
+      fadeIn.style.left = "0";
+      fadeIn.style.width = "100vw";
+      fadeIn.style.height = "100vh";
+      fadeIn.style.backgroundColor = "black";
+      fadeIn.style.zIndex = "9999";
+      fadeIn.style.opacity = "1";
+      fadeIn.style.transition = "opacity 2s ease"; // ← duración del fade in
+      document.body.appendChild(fadeIn);
+
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          fadeIn.style.opacity = "0";
+          setTimeout(() => fadeIn.remove(), 2000);
+        }, 200);
+      });
+    </script>
   </body>
 </html>

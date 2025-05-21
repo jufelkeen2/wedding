@@ -1,9 +1,11 @@
+<!-- index.html (pantalla de inicio mágica) -->
 <!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bienvenidos a la Boda Mágica</title>
+    <title>Bienvenida a Hogwarts</title>
+    <link rel="stylesheet" href="styles.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
@@ -11,57 +13,127 @@
     <style>
       body {
         margin: 0;
-        background-color: #000;
-        background-image: url("./img/map.jpg");
-        background-size: cover;
-        background-position: center;
-        font-family: "Hpotter", serif;
+        padding: 0;
+        background-color: #1a1a1a;
+        overflow-x: hidden;
+      }
+
+      .container {
+        position: relative;
+        width: 100%;
+        height: 100vh;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 100vh;
       }
 
-      .start-button {
-        padding: 20px 50px;
-        font-size: 2em;
-        border: none;
-        border-radius: 15px;
-        background-color: #d4af37;
-        color: #000;
+      #envelope,
+      #scrollText {
+        max-width: 100%;
+        height: auto;
+      }
+
+      #snitchButton {
+        position: absolute;
+        bottom: 4%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: auto;
         cursor: pointer;
-        transition: transform 0.3s ease;
-        box-shadow: 0 0 15px #d4af37;
+        z-index: 10;
+        filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
       }
 
-      .start-button:hover {
-        transform: scale(1.1);
-        background-color: #b2951c;
+      /* Responsive específico para iPhone 14 y móviles similares */
+      @media only screen and (max-width: 430px) and (max-height: 950px) {
+        #envelope {
+          width: 80%;
+        }
+
+        #scrollText {
+          width: 100%;
+        }
+
+        #snitchButton {
+          width: 150px;
+          bottom: 23%;
+        }
+      }
+
+      #fade-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: black;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 9999;
+        transition: opacity 1s ease;
       }
     </style>
   </head>
   <body>
-    <button
-      class="start-button animate__animated animate__fadeIn"
-      onclick="startExperience()"
-    >
-      Comienza
-    </button>
+    <div class="container">
+      <img
+        src="img/envelope.png"
+        id="envelope"
+        class="animate__animated animate__jackInTheBox"
+      />
+
+      <div class="scroll-text hidden">
+        <img
+          src="img/scroll-text.png"
+          id="scrollText"
+          class="animate__animated"
+        />
+      </div>
+
+      <img
+        src="img/snitch.png"
+        id="snitchButton"
+        class="hidden animate__animated"
+      />
+    </div>
+
+    <audio id="introMusic" src="audio/music.mp3" loop></audio>
 
     <script>
-      const music = new Audio("./audio/music.mp3");
-      music.volume = 0.3;
-      music.loop = true;
+      const envelope = document.getElementById("envelope");
+      const scrollText = document.getElementById("scrollText");
+      const snitch = document.getElementById("snitchButton");
 
-      function startExperience() {
-        // Intentar reproducir música
-        music.play().catch((err) => console.log("Bloqueo autoplay:", err));
+      envelope.addEventListener("click", () => {
+        envelope.classList.add("animate__fadeOut");
 
-        // Esperar 500ms para que comience a sonar y luego redirigir
+        setTimeout(() => {
+          envelope.classList.add("hidden");
+
+          scrollText.parentElement.classList.remove("hidden");
+          scrollText.classList.add("animate__rotateIn");
+
+          // Mostrar snitch 8 segundos después del scroll
+          setTimeout(() => {
+            snitch.classList.remove("hidden");
+            snitch.classList.add("animate__bounceIn");
+          }, 8000);
+        }, 1000);
+      });
+
+      // Redirigir a la ruleta al hacer clic en la snitch
+      snitch.addEventListener("click", () => {
+        const overlay = document.getElementById("fade-overlay");
+        overlay.style.transition = "opacity 2s ease"; // aquí defines la duración del fade out
+        overlay.style.opacity = "1";
+
         setTimeout(() => {
           window.location.href = "ruleta.html";
-        }, 500);
-      }
+        }, 2000); // este tiempo debe coincidir con la duración del transition
+      });
     </script>
+    <div id="fade-overlay"></div>
   </body>
 </html>
